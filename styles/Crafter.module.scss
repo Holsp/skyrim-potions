@@ -1,0 +1,54 @@
+.wrappers {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    text-align: center;
+    padding-left: 15vw;
+
+    .wrapper {
+        width: 70vw;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        
+
+        select {
+            position: relative;
+            width: 30vh;
+            height: 5vh;
+            padding-right: 5vh;
+            background-color: transparent;
+            border: 3px #fff solid;
+            border-radius: 50px;
+            text-align: center;
+            appearance: none;
+            background: url('../public/images/arrow.png');
+            background-size: 2vh;
+            background-position: 85% center;
+            background-repeat: no-repeat;
+            margin: auto;
+            option {
+                background-color: rgb(31, 31, 31);
+            }
+        }
+        
+    }
+    h2:nth-child(0) {
+        margin-top: 0%;
+    }
+    h2 {
+        margin-top: 5vh;
+    }
+}
+
+
+.imageWrapper {
+    position: absolute;
+    left: 5vh;
+    top: 2.5vh;
+    cursor: pointer;
+}
+.imageWrapper:hover {
+    transform: scale(1.1);
+    transition: 100ms;
+}
