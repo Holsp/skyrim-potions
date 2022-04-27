@@ -6,8 +6,7 @@ import { SetStateAction, useEffect, useState } from "react";
 import Ingredients from "../public/data/alchemy.json";
 import { useRouter } from "next/router";
 
-const IngredientFinder: NextPage = () => {
-
+const EffectsFinder: NextPage = () => {
     const router = useRouter();
 
     interface IIngredients {
@@ -19,44 +18,35 @@ const IngredientFinder: NextPage = () => {
     }
 
 
-
-    const [ingredients, setIngredients] = useState<(JSX.Element)[]>([]);
+    //Variable in which effects from all three inputs are stored
     const [resultEffects, setResultEffects] = useState<string[]>([]);
 
+    //Individual JSX arrays that are displayed as <option> in code
     const [arr1, setArr1] = useState<JSX.Element[]>([]);
     const [arr2, setArr2] = useState<JSX.Element[]>([]);
     const [arr3, setArr3] = useState<JSX.Element[]>([]);
 
-    //const one: string[] = [];
-    //const two: string[] = [];
-    //const three: string[] = [];
-
+    //Variables in which the current selected IInterface is stored
     const [one, setOne] = useState<IIngredients>();
     const [two, setTwo] = useState<IIngredients>();
     const [three, setThree] = useState<IIngredients>();
 
-
+    //Fills individual JSX arrays with data
     useEffect(() => {
-        setIngredients(Ingredients.ingredients.map((item, key) => <option key={key} value={item.name}>{item.name}</option>));
-        setArr1(ingredients);
-        setArr2(ingredients);
-        setArr3(ingredients);
+        setArr1(Ingredients.ingredients.map((item, key) => <option key={key} value={item.name}>{item.name}</option>));
+        setArr2(arr1);
+        setArr3(arr1);
     }, []);
 
     useEffect(() => {
+        //Empties out arrays
         setResultEffects([]);
         setArr1([]);
         setArr2([]);
         setArr3([]);
-        //const allEffects: string[] = [];
         const allNames: string[] = [];
 
-        //Nullish coalescing
-        const allEffects : string[] = [...(one?.effects??[]),...(two?.effects??[]),...(three?.effects??[])];
-        //one?.effects!.forEach(e => allEffects.push(e));
-        //two?.effects!.forEach(e => allEffects.push(e));
-        //three?.effects!.forEach(e => allEffects.push(e));
-
+        //Hides already selected options for other <select> JSX elements
         Ingredients.ingredients.map((item, key) => {
 
             //Conditional array
@@ -65,11 +55,13 @@ const IngredientFinder: NextPage = () => {
             if (item.name !== one?.name && item.name !== two?.name) setArr3(previousArr => [...previousArr, <option key={key} value={item.name}>{item.name}</option>]);
         });
 
-        //console.log(avalibeIngredients);
-        console.log(ingredients);
 
+        //Nullish coalescing
+        //allEffects are filled thanks to NC. allEffects are used to find out if any potion effects are created
+        const allEffects: string[] = [...(one?.effects ?? []), ...(two?.effects ?? []), ...(three?.effects ?? [])];
 
-
+        //Iterates through all effects in Ingredients.json. If the effect appears twice in allEffects.reduce
+        //It will be saved into setResultEffects and mapped
         Ingredients.effects.forEach((e) => {
             const num = allEffects.reduce((value, currentItem) => {
                 return (currentItem === e) ? value + 1 : value;
@@ -81,12 +73,6 @@ const IngredientFinder: NextPage = () => {
 
     }, [one, two, three])
 
-
-
-    function log() {
-        console.log(ingredients);
-        console.log(one);
-    }
 
     return (
         <div>
@@ -129,4 +115,4 @@ const IngredientFinder: NextPage = () => {
     )
 }
 
-export default IngredientFinder;
+export default EffectsFinder;

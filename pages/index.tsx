@@ -13,7 +13,8 @@ const Home: NextPage = () => {
         <title>Skyrim alchemy</title>
       </Head>
       <div className={styles.wrapper}>
-        <button onClick={() => router.push('/ingredientfinder')}>
+        {/* Used to find potion effects out of combination of two or more ingredients */}
+        <button onClick={() => router.push('/effectsfinder')}>
           Find effects
         </button>
         <button onClick={() => router.push('/craftertwo')}>
