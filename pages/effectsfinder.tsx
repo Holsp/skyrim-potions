@@ -84,7 +84,7 @@ const EffectsFinder: NextPage = () => {
             </div>
             <div className={styles.wrappers}>
 
-                <h2>Ingredients</h2>
+                <h2>Select ingredients</h2>
                 <div className={styles.wrapper}>
                     <select onChange={(e) => setOne(Ingredients.ingredients.find((item) => item.name === e.target.value))}>
                         <option></option>
@@ -102,7 +102,7 @@ const EffectsFinder: NextPage = () => {
                     </select>
                     <br />
                 </div>
-                <h2>Effects</h2>
+                <h2>Possible effects</h2>
                 <div className={styles.wrapper}>
                     <select>
                         {resultEffects.map((item, key) => <option key={key}>{item}</option>)}
