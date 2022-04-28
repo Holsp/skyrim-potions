@@ -17,8 +17,11 @@ const IngredientsFinder: NextPage = () => {
         weight?: number;
     }
 
+    //List of all the possible ingredients you can use to make the specified effect
     const [possibleIngredients, setPossibleIngredients] = useState<IIngredients[]>([]);
 
+
+    //Popuklates possibleIngredients with the selected effect
     function changeIngredients(value : string) {
         console.log(value);
         setPossibleIngredients([]);
