@@ -17,7 +17,7 @@ const Home: NextPage = () => {
         <button onClick={() => router.push('/effectsfinder')}>
           Find effects
         </button>
-        <button onClick={() => router.push('/craftertwo')}>
+        <button onClick={() => router.push('/ingredientsfinder')}>
           Find ingredients
         </button>
       </div>
